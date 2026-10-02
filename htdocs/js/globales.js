@@ -42,6 +42,14 @@ let websocketReconnectDelay = websocketReconnectDelayMin;
 let websocketKeepAliveTimer = null;
 let websocketLastPong = null;
 
+// Local Playback
+let localPlaybackProgressTimer = null;
+const localPlaybackProgressDelay = 5000;
+let localPlaybackReconnectTimer = null;
+const localPlaybackReconnectDelay = 5000;
+const localPlaybackReconnectMaxRetries = 10;
+let localPlaybackReconnectCurRetry = 0;
+
 // Global timers
 let searchTimer = null;
 let progressTimer = null;
@@ -1673,7 +1681,7 @@ const keymap = {
         "T": {"order": 207, "cmd": "openModal", "options": ["modalSettings"], "desc": "Open settings"},
         "V": {"order": 207, "cmd": "showListVariablesModal", "options": [], "desc": "Open variables", "feature": "featScripting"},
         "?": {"order": 207, "cmd": "openModal", "options": ["modalAbout"], "desc": "Open about"},
-        
+
     "navigation": {"order": 300, "desc": "Navigation"},
         "0": {"order": 301, "cmd": "appGoto", "options": ["Home"], "desc": "Show home", "feature": "featHome"},
         "1": {"order": 302, "cmd": "appGoto", "options": ["Playback"], "desc": "Show playback"},
